@@ -18,12 +18,12 @@ function App() {
       <UserProfile 
         name="Alice"
         age="25"
-        Bio="Loves hiking and photography"
+        bio="Loves hiking and photography"
       />
       <UserProfile 
         name="Sam"
         age="27"
-        Bio="Tech enthusiast and cybersecurity auditor"
+        bio="Tech enthusiast and cybersecurity auditor"
       />
     </div>
         <Header />
