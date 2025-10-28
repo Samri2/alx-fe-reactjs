@@ -1,46 +1,47 @@
-import React, { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import { useState } from "react";
+import axios from "axios";
 
 const SearchUser = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
-  const handleSearch = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
+    setError(false);
     setUser(null);
 
-    const data = await fetchUserData(username);
-    setLoading(false);
-
-    if (data) {
-      setUser(data);
-    } else {
-      setError("Looks like we can't find the user");
+    try {
+      const response = await axios.get(`https://api.github.com/users/${username}`);
+      setUser(response.data);
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <form onSubmit={handleSearch} style={{ marginBottom: "20px" }}>
+    <div style={{ padding: "20px", maxWidth: "400px", margin: "0 auto" }}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Enter GitHub username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{ padding: "8px", width: "250px", marginRight: "10px" }}
+          style={{ width: "100%", padding: "8px", marginBottom: "10px" }}
         />
-        <button type="submit">Search</button>
+        <button type="submit" style={{ padding: "8px 16px" }}>Search</button>
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>Looks like we cant find the user</p>}
+
       {user && (
-        <div style={{ marginTop: "20px" }}>
-          <img src={user.avatar_url} alt={user.login} width={100} />
+        <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <img src={user.avatar_url} alt={user.login} width={100} style={{ borderRadius: "50%" }} />
           <h3>{user.name || user.login}</h3>
           <p>
             <a href={user.html_url} target="_blank" rel="noreferrer">
