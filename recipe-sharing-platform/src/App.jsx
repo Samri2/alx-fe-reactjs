@@ -1,1 +1,7 @@
-<h1 className="text-blue-500 text-xl">Hello, Tailwind!</h1>
+import HomePage from "./components/HomePage";
+
+function App() {
+  return <HomePage />;
+}
+
+export default App;
