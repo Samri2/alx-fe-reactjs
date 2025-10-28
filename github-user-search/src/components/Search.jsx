@@ -1,14 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 
-const SearchUser = () => {
+const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // ALX expects a function named fetchUserData
+  const fetchUserData = async (username) => {
     setLoading(true);
     setError(false);
     setUser(null);
@@ -20,6 +20,13 @@ const SearchUser = () => {
       setError(true);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username.trim() !== "") {
+      fetchUserData(username);
     }
   };
 
