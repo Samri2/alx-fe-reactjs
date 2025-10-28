@@ -1,7 +1,9 @@
+import UserProfile from "./components/UserProfile";
+
 function App() {
   return (
-    <div className="text-center text-blue-500">
-      Tailwind is working!
+    <div>
+      <UserProfile />
     </div>
   );
 }
