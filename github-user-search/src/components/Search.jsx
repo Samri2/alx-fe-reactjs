@@ -53,4 +53,4 @@ const SearchUser = () => {
   );
 };
 
-export default SearchUser;
+export default Search;

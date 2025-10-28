@@ -2,7 +2,7 @@
 import { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import UserList from "./components/UserList";
-import SearchUser from "./components/searchUser";
+import Search from "./components/Search";
 
 function App() {
   const [users, setUsers] = useState([]);
