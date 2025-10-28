@@ -12,7 +12,7 @@ const UserProfile = (props) => {
       boxShadow: "0px 4px 8px rgba(0,0,0,0.1)"
     }}>
       <h2  style={{ color: 'blue', fontSize: '1.5rem' }}>{props.name}</h2>
-      <p style={{ fontWeight: 'bold', color: 'darkgreen' }}>Age: {props.age}</p>
+       <p>Age: <span style={{ fontWeight: 'bold' }}>{props.age}</span></p>
       <p style={{ fontStyle: 'italic' }}>Bio: {props.bio}</p>
     </div>
   );
