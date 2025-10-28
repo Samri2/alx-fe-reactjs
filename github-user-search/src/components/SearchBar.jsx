@@ -1,27 +1,24 @@
-// src/components/SearchBar.jsx
-import { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 
-const SearchBar = ({ setUsers }) => {
+const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
 
-  const handleSearch = async () => {
-    if (!query) return;
-    const response = await axios.get(`https://api.github.com/search/users?q=${query}`);
-    setUsers(response.data.items);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(query); // call the parent function with the search query
   };
 
   return (
-    <div style={{ marginBottom: "20px" }}>
+    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
       <input
         type="text"
-        value={query}
         placeholder="Search GitHub users..."
+        value={query}
         onChange={(e) => setQuery(e.target.value)}
-        style={{ marginRight: "10px" }}
+        style={{ padding: "8px", width: "250px", marginRight: "8px" }}
       />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+      <button type="submit">Search</button>
+    </form>
   );
 };
 
