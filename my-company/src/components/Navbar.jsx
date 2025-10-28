@@ -1,39 +1,13 @@
-function Navbar({ setPage }) {
-  const navStyle = {
-    position: "fixed",        // stays at the top
-    top: 0,
-    left: 0,
-    width: "100%",
-    padding: "18px",
-    background: "#1e90ff",
-    display: "flex",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    color: "white",
-    boxShadow: "0 4px 6px rgba(0,0,0,0.2)", // subtle shadow
-    zIndex: 1000
-  };
+// src/components/Navbar.jsx
+import { Link } from 'react-router-dom';
 
-  const buttonStyle = {
-    background: "white",
-    color: "#1e90ff",
-    border: "none",
-    padding: "10px 15px",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontWeight: "bold",
-    transition: "0.3s"   // smooth hover effect
-  };
-
-  const buttonHover = e => e.target.style.background = "#f0f0f0";
-  const buttonOut = e => e.target.style.background = "white";
-
+function Navbar() {
   return (
-    <nav style={navStyle}>
-      <button style={buttonStyle} onClick={() => setPage("home")} onMouseEnter={buttonHover} onMouseLeave={buttonOut}>Home</button>
-      <button style={buttonStyle} onClick={() => setPage("about")} onMouseEnter={buttonHover} onMouseLeave={buttonOut}>About</button>
-      <button style={buttonStyle} onClick={() => setPage("services")} onMouseEnter={buttonHover} onMouseLeave={buttonOut}>Services</button>
-      <button style={buttonStyle} onClick={() => setPage("contact")} onMouseEnter={buttonHover} onMouseLeave={buttonOut}>Contact</button>
+    <nav style={{ padding: '10px', backgroundColor: '#333', color: '#fff' }}>
+      <Link to="/" style={{ margin: '0 10px', color: '#fff', textDecoration: 'none' }}>Home</Link>
+      <Link to="/about" style={{ margin: '0 10px', color: '#fff', textDecoration: 'none' }}>About</Link>
+      <Link to="/services" style={{ margin: '0 10px', color: '#fff', textDecoration: 'none' }}>Services</Link>
+      <Link to="/contact" style={{ margin: '0 10px', color: '#fff', textDecoration: 'none' }}>Contact</Link>
     </nav>
   );
 }
