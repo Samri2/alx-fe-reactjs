@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import SearchResults from "./SearchResults";
+// inside the return:
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -67,6 +69,8 @@ const Search = () => {
           Search
         </button>
       </form>
+      {results.length > 0 && <SearchResults users={results} />}
+
 
       {loading && <p className="mt-4">Loading...</p>}
       {error && <p className="mt-4 text-red-500">Looks like we cant find the user</p>}
